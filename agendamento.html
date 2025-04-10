@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agendamento - Auto-Car MR</title>
+  
+  <link rel="stylesheet" href="styles_agendamento.css">
+</head>
+<body>
+  <header>
+    <h1>Auto-Car MR</h1>
+    <img src="logoauto.jpg" alt="Auto-Car MR Logo">
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>Agendamento de Serviço</h2>
+    <form>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="text" id="telefone" name="telefone" required>
+
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" required>
+
+      <label for="horario">Horário:</label>
+      <input type="time" id="horario" name="horario" required>
+
+      <label for="marca">Marca do Veículo:</label>
+      <select id="marca" name="marca" required>
+        <option value="" disabled selected>Selecione a Marca</option>
+        <option value="Ford">Ford</option>
+        <option value="Tesla">Tesla</option>
+        <option value="Volkswagen">Volkswagen</option>
+        <option value="Hyundai">Hyundai</option>
+        <option value="Honda">Honda</option>
+        <option value="Mitsubishi">Mitsubishi</option>
+        <option value="Porsche">Porsche</option>
+        <option value="BMW">BMW</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Mercedes-Benz">Mercedes-Benz</option>
+        <option value="Peugeot">Peugeot</option>
+        <option value="Renault">Renault</option>
+        <option value="Nissan">Nissan</option>
+        <option value="Citroen">Citroen</option>
+        <option value="Fiat">Fiat</option>
+        <option value="Audi">Audi</option>
+        <option value="Kia">Kia</option>
+        <option value="Outro">Outro</option>
+      </select>
+
+      <label for="modelo">Modelo do Veículo:</label>
+      <select id="modelo" name="modelo" required>
+        <option value="" disabled selected>Selecione o Modelo</option>
+      </select>
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" rows="5"></textarea>
+
+      <input type="button" value="Agendar" onclick="agendar()">
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Auto-Car MR. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

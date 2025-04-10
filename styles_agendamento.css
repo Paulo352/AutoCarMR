@@ -1,0 +1,62 @@
+/* Estilos específicos para a página de agendamento */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  form h2 {
+    margin-top: 0;
+  }
+  
+  form p {
+    margin: 10px 0;
+  }
+  
+  form label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  form select,
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  form textarea {
+    resize: vertical;
+  }
+  
+  form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos para a logo */
+  .logo {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+  }
+  
+  /* Restante dos estilos... */
+    
