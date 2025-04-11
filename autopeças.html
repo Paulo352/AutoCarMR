@@ -1,54 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>Auto-Car MR - Venda de Autopeças</title>
-  <link rel="stylesheet" href="styles_autopecas.css">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Peças - Auto-Car MR</title>
+  <link rel="stylesheet" href="styles.css"> <!-- CSS geral -->
+  <link rel="stylesheet" href="autopeças.css"> <!-- CSS específico -->
 </head>
 <body>
-  <header>
-    <img src="logoauto.jpg" alt="Logo da Auto-Car MR" class="logo">
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="contato.html">Contato</a></li>
-        <li><a href="agendamento.html">Agendamento</a></li>
-        <li><a href="autopecas.html">Venda de Autopeças</a></li>
-      </ul>
-    </nav>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <img src="logoauto.jpg" alt="Auto-Car MR Logo">
+        <h1 class="company-name">Auto-Car MR</h1>
+      </div>
+      
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="agendamento.html">Agendamento</a></li>
+          <li><a href="autopecas.html" class="active">Auto Peças</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-  
-  <main>
-    <h1>Venda de Autopeças</h1>
-    <section class="autopecas">
-      <div class="peca">
-        <h2>Motor</h2>
-        <p>Descrição: Motor 2.0 Flex</p>
-        <p>Valor: R$ 2.500,00</p>
+
+  <main class="main-content">
+    <div class="container">
+      <h2 class="section-title">Auto Peças</h2>
+      
+      <div class="filters">
+        <div class="filter-group">
+          <h3>Categorias</h3>
+          <div class="filter-options">
+            <div class="filter-option active">Todas</div>
+            <div class="filter-option">Motor</div>
+            <div class="filter-option">Suspensão</div>
+            <div class="filter-option">Freios</div>
+            <div class="filter-option">Elétrica</div>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h3>Marcas</h3>
+          <div class="filter-options">
+            <div class="filter-option active">Todas</div>
+            <div class="filter-option">Volkswagen</div>
+            <div class="filter-option">Ford</div>
+            <div class="filter-option">Chevrolet</div>
+            <div class="filter-option">Fiat</div>
+          </div>
+        </div>
       </div>
-      <div class="peca">
-        <h2>Farol</h2>
-        <p>Descrição: Farol Dianteiro Esquerdo</p>
-        <p>Valor: R$ 300,00</p>
+      
+      <div class="autopecas-section">
+        <div class="pecas-grid">
+          <!-- Item 1 -->
+          <div class="peca-card">
+            <div class="peca-img-container">
+              <img src="images/peca1.jpg" alt="Amortecedor Dianteiro" class="peca-img">
+            </div>
+            <div class="peca-body">
+              <span class="peca-category">Suspensão</span>
+              <h3 class="peca-title">Amortecedor Dianteiro</h3>
+              <p class="peca-desc">Amortecedor dianteiro original para diversos modelos</p>
+              <div>
+                <span class="peca-old-price">R$ 320,00</span>
+                <span class="peca-price">R$ 289,90</span>
+              </div>
+              <span class="peca-stock">Disponível</span>
+              <div class="peca-actions">
+                <button class="btn-peca">Adicionar ao Carrinho</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Item 2 -->
+          <div class="peca-card">
+            <div class="peca-img-container">
+              <img src="images/peca2.jpg" alt="Pastilha de Freio" class="peca-img">
+            </div>
+            <div class="peca-body">
+              <span class="peca-category">Freios</span>
+              <h3 class="peca-title">Pastilha de Freio</h3>
+              <p class="peca-desc">Pastilha de freio dianteira para VW Gol 2010-2019</p>
+              <div>
+                <span class="peca-price">R$ 149,90</span>
+              </div>
+              <span class="peca-stock">Disponível</span>
+              <div class="peca-actions">
+                <button class="btn-peca">Adicionar ao Carrinho</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Adicione mais itens aqui -->
+        </div>
       </div>
-      <div class="peca">
-        <h2>Amortecedor</h2>
-        <p>Descrição: Amortecedor Dianteiro</p>
-        <p>Valor: R$ 200,00</p>
-      </div>
-      <div class="peca">
-        <h2>Pastilha de Freio</h2>
-        <p>Descrição: Pastilha de Freio para o Jogo</p>
-        <p>Valor: R$ 100,00</p>
-      </div>
-      <!-- Adicione mais peças aqui -->
-    </section>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2023 Auto-Car MR. Todos os direitos reservados.</p>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> Auto-Car MR. Todos os direitos reservados.</p>
+    </div>
   </footer>
+
+  <script>
+    // Atualiza o ano automaticamente
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Lógica para filtros
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', function() {
+        this.parentNode.querySelectorAll('.filter-option').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        this.classList.add('active');
+        // Aqui você adicionaria a lógica para filtrar os produtos
+      });
+    });
+  </script>
 </body>
 </html>
