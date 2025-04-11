@@ -1,128 +1,228 @@
-function agendar() {
-    var nome = document.getElementById("nome").value;
-    var email = document.getElementById("email").value;
-    var telefone = document.getElementById("telefone").value;
-    var data = document.getElementById("data").value;
-    var horario = document.getElementById("horario").value;
-    var marca = document.getElementById("marca").value;
-    var modelo = document.getElementById("modelo").value;
-    var mensagem = document.getElementById("mensagem").value;
+// Configurações globais
+const config = {
+    emailService: 'autocarmr6@gmail.com',
+    workingHours: {
+      morning: { start: 8, end: 12 },
+      afternoon: { start: 13, end: 17 }
+    }
+  };
   
-    // Verificar se todos os campos estão preenchidos
-    if (nome && email && telefone && data && horario && marca && modelo) {
-      // Verificar horário de funcionamento (08:00-12:00 e 13:00-17:00)
-      var horaAtual = new Date().getHours();
-      if (
-        (horaAtual >= 8 && horaAtual < 12) ||
-        (horaAtual >= 13 && horaAtual < 17)
-      ) {
-        // Enviar email com os dados do agendamento
-        var subject = "Agendamento de Serviço";
-        var body =
-          "Nome: " +
-          nome +
-          "\n" +
-          "Email: " +
-          email +
-          "\n" +
-          "Telefone: " +
-          telefone +
-          "\n" +
-          "Data: " +
-          data +
-          "\n" +
-          "Horário: " +
-          horario +
-          "\n" +
-          "Marca do Veículo: " +
-          marca +
-          "\n" +
-          "Modelo do Veículo: " +
-          modelo +
-          "\n" +
-          "Mensagem: " +
-          mensagem;
+  // Banco de dados de modelos
+  const modelosPorMarca = {
+    // ... (mesmo conteúdo anterior)
+  };
   
-        window.open(
-          "mailto:seuemail@example.com?subject=" +
-            encodeURIComponent(subject) +
-            "&body=" +
-            encodeURIComponent(body)
-        );
+  // Funções utilitárias
+  const utils = {
+    getCurrentYear: () => new Date().getFullYear(),
+    validateEmail: (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+    validatePhone: (phone) => /^[0-9]{10,11}$/.test(phone),
+    formatPrice: (price) => `R$ ${parseFloat(price).toFixed(2).replace('.', ',')}`
+  };
   
-        // Limpar os campos após o agendamento
-        document.getElementById("nome").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("telefone").value = "";
-        document.getElementById("data").value = "";
-        document.getElementById("horario").value = "";
-        document.getElementById("marca").value = "";
-        document.getElementById("modelo").value = "";
-        document.getElementById("mensagem").value = "";
-  
-        alert("Agendamento realizado com sucesso!");
-      } else {
-        alert(
-          "Desculpe, o agendamento só pode ser realizado durante o horário de funcionamento (08:00-12:00 e 13:00-17:00)."
-        );
+  // Manipulação do DOM
+  const DOM = {
+    init: () => {
+      // Atualiza o ano no footer
+      document.getElementById('current-year').textContent = utils.getCurrentYear();
+      
+      // Inicializa eventos
+      if (document.getElementById('agendamentoForm')) {
+        DOM.setupAgendamentoForm();
       }
-    } else {
-      alert("Por favor, preencha todos os campos obrigatórios.");
+      
+      if (document.getElementById('marca')) {
+        DOM.setupModelosDropdown();
+      }
+    },
+    
+    setupAgendamentoForm: () => {
+      const form = document.getElementById('agendamentoForm');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await Agendamento.submitForm();
+      });
+    },
+    
+    setupModelosDropdown: () => {
+      const marcaSelect = document.getElementById('marca');
+      marcaSelect.addEventListener('change', () => {
+        Agendamento.carregarModelos();
+      });
     }
-  }
+  };
   
-  function carregarModelos() {
-    var marca = document.getElementById("marca").value;
-    var modeloSelect = document.getElementById("modelo");
-  
-    // Limpar a lista de modelos
-    modeloSelect.innerHTML = "";
-  
-    if (marca === "Ford") {
-      var modelos = ["EcoSport", "Fiesta", "Focus", "Fusion", "Ka", "Ranger"];
-    } else if (marca === "Tesla") {
-      var modelos = ["Model 3", "Model S", "Model X", "Model Y"];
-    } else if (marca === "Volkswagen") {
-      var modelos = ["Gol", "Jetta", "Nivus", "Polo", "T-Cross", "Tiguan"];
-    } else if (marca === "Hyundai") {
-      var modelos = ["Creta", "HB20", "i20", "i30", "Santa Fe", "Tucson"];
-    } else if (marca === "Honda") {
-      var modelos = ["Civic", "CR-V", "Fit", "HR-V", "WR-V"];
-    } else if (marca === "Mitsubishi") {
-      var modelos = ["Lancer", "Outlander", "Pajero", "Pajero Sport", "ASX"];
-    } else if (marca === "Porsche") {
-      var modelos = ["911", "Cayenne", "Macan", "Panamera", "Taycan"];
-    } else if (marca === "BMW") {
-      var modelos = ["Série 3", "Série 5", "X1", "X3", "X5"];
-    } else if (marca === "Toyota") {
-      var modelos = ["Corolla", "Etios", "Hilux", "Rav4", "Yaris"];
-    } else if (marca === "Mercedes-Benz") {
-      var modelos = ["Classe A", "Classe C", "Classe E", "GLA", "GLC"];
-    } else if (marca === "Peugeot") {
-      var modelos = ["208", "2008", "308", "3008", "5008"];
-    } else if (marca === "Renault") {
-      var modelos = ["Captur", "Duster", "Kwid", "Logan", "Sandero"];
-    } else if (marca === "Nissan") {
-      var modelos = ["Frontier", "Kicks", "March", "Sentra", "Versa"];
-    } else if (marca === "Citroen") {
-      var modelos = ["C3", "C4 Cactus", "C4 Lounge", "Jumpy", "Aircross"];
-    } else if (marca === "Fiat") {
-      var modelos = ["Argo", "Cronos", "Mobi", "Palio", "Uno"];
-    } else if (marca === "Audi") {
-      var modelos = ["A3", "A4", "Q3", "Q5", "TT"];
-    } else if (marca === "Kia") {
-      var modelos = ["Cerato", "Picanto", "Seltos", "Soul", "Sportage"];
-    } else if (marca === "Outro") {
-      var modelos = ["Outro"];
+  // Lógica de agendamento
+  const Agendamento = {
+    carregarModelos: () => {
+      const marcaSelecionada = document.getElementById('marca').value;
+      const modeloSelect = document.getElementById('modelo');
+      
+      modeloSelect.innerHTML = '';
+      modeloSelect.disabled = !marcaSelecionada;
+      
+      if (marcaSelecionada && modelosPorMarca[marcaSelecionada]) {
+        const defaultOption = new Option('Selecione o modelo', '', true, true);
+        defaultOption.disabled = true;
+        modeloSelect.add(defaultOption);
+        
+        modelosPorMarca[marcaSelecionada].forEach(modelo => {
+          modeloSelect.add(new Option(modelo, modelo.toLowerCase().replace(/\s+/g, '-')));
+        });
+      }
+    },
+    
+    validateForm: () => {
+      // Validação dos campos
+      const requiredFields = ['nome', 'email', 'telefone', 'data', 'horario', 'marca', 'modelo'];
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        const element = document.getElementById(field);
+        if (!element.value) {
+          element.classList.add('error');
+          isValid = false;
+        } else {
+          element.classList.remove('error');
+        }
+      });
+      
+      // Validação específica de email e telefone
+      if (!utils.validateEmail(document.getElementById('email').value)) {
+        document.getElementById('email').classList.add('error');
+        isValid = false;
+      }
+      
+      if (!utils.validatePhone(document.getElementById('telefone').value)) {
+        document.getElementById('telefone').classList.add('error');
+        isValid = false;
+      }
+      
+      return isValid;
+    },
+    
+    submitForm: async () => {
+      if (!Agendamento.validateForm()) {
+        DOM.showFeedback('Por favor, preencha todos os campos corretamente.', 'error');
+        return;
+      }
+      
+      const formData = {
+        nome: document.getElementById('nome').value,
+        email: document.getElementById('email').value,
+        telefone: document.getElementById('telefone').value,
+        data: document.getElementById('data').value,
+        horario: document.getElementById('horario').value,
+        marca: document.getElementById('marca').value,
+        modelo: document.getElementById('modelo').value,
+        mensagem: document.getElementById('mensagem').value
+      };
+      
+      try {
+        const response = await fetch('api/agendamento.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          DOM.showFeedback('Agendamento realizado com sucesso!', 'success');
+          document.getElementById('agendamentoForm').reset();
+        } else {
+          DOM.showFeedback(result.message || 'Ocorreu um erro ao agendar.', 'error');
+        }
+      } catch (error) {
+        DOM.showFeedback('Erro ao conectar com o servidor.', 'error');
+        console.error('Error:', error);
+      }
     }
+  };
   
-    // Preencher a lista de modelos com base na marca selecionada
-    for (var i = 0; i < modelos.length; i++) {
-      var option = document.createElement("option");
-      option.text = modelos[i];
-      modeloSelect.add(option);
+  // Lógica de auto peças
+  const AutoPecas = {
+    init: () => {
+      if (document.getElementById('pecasContainer')) {
+        AutoPecas.loadProducts();
+        AutoPecas.setupFilters();
+      }
+    },
+    
+    loadProducts: async (filters = {}) => {
+      try {
+        const response = await fetch('api/produtos.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(filters)
+        });
+        
+        const products = await response.json();
+        AutoPecas.renderProducts(products);
+      } catch (error) {
+        console.error('Error loading products:', error);
+      }
+    },
+    
+    renderProducts: (products) => {
+      const container = document.getElementById('pecasContainer');
+      container.innerHTML = '';
+      
+      products.forEach(product => {
+        const productHTML = `
+          <div class="peca-card" data-category="${product.category}" data-brand="${product.brand}">
+            <div class="peca-img-container">
+              <img src="assets/images/products/${product.image}" alt="${product.name}" class="peca-img">
+            </div>
+            <div class="peca-body">
+              <span class="peca-category">${product.category}</span>
+              <h3 class="peca-title">${product.name}</h3>
+              <p class="peca-desc">${product.description}</p>
+              <div>
+                ${product.oldPrice ? `<span class="peca-old-price">${utils.formatPrice(product.oldPrice)}</span>` : ''}
+                <span class="peca-price">${utils.formatPrice(product.price)}</span>
+              </div>
+              <span class="peca-stock ${product.stock ? 'in-stock' : 'out-of-stock'}">
+                ${product.stock ? 'Disponível' : 'Esgotado'}
+              </span>
+              <div class="peca-actions">
+                <button class="btn-peca" ${!product.stock ? 'disabled' : ''}>
+                  ${product.stock ? 'Adicionar ao Carrinho' : 'Indisponível'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        container.insertAdjacentHTML('beforeend', productHTML);
+      });
+    },
+    
+    setupFilters: () => {
+      document.querySelectorAll('.filter-option').forEach(option => {
+        option.addEventListener('click', function() {
+          this.parentNode.querySelectorAll('.filter-option').forEach(opt => {
+            opt.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          const filters = {
+            category: document.querySelector('.filter-options[data-filter="category"] .active')?.textContent,
+            brand: document.querySelector('.filter-options[data-filter="brand"] .active')?.textContent
+          };
+          
+          AutoPecas.loadProducts(filters);
+        });
+      });
     }
-  }
+  };
   
-  document.getElementById("marca").addEventListener("change", carregarModelos);
-  
+  // Inicialização quando o DOM estiver pronto
+  document.addEventListener('DOMContentLoaded', () => {
+    DOM.init();
+    AutoPecas.init();
+  });
