@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 // Configurações
 $config = [
-    'email_to' => 'lima.pereira.paulo@escola.pr.gov.br', // Email alterado aqui
+    'email_to' => 'paulocauan39@gmail.com', // Email alterado aqui
     'working_hours' => [
         'morning' => ['start' => '08:00', 'end' => '12:00'],
         'afternoon' => ['start' => '13:00', 'end' => '17:00']
