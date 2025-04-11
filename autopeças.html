@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auto Peças - Auto-Car MR</title>
-  <link rel="stylesheet" href="autopeças.css">
+  <link rel="stylesheet" href="agendamento.css"> <!-- Usando o mesmo CSS -->
 </head>
 <body>
   <div class="container">
@@ -17,9 +17,8 @@
 
     <nav class="nav-menu">
       <ul>
-        <li><a href="#servicos">Mecânica</a></li>
-        <li><a href="#borracharia">Borracharia</a></li>
-        <li><a href="#guincho">Guincho</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
         <li><a href="agendamento.html">Agendamento</a></li>
         <li><a href="autopecas.html" class="active">Auto Peças</a></li>
         <li><a href="contato.html">Contato</a></li>
@@ -27,7 +26,7 @@
     </nav>
 
     <main class="main-content">
-      <h2 class="section-title">Catálogo de Peças e Pneus</h2>
+      <h2>Catálogo de Peças e Pneus</h2>
       
       <div class="filters">
         <div class="filter-group">
@@ -39,7 +38,6 @@
             <div class="filter-option" data-filter="category" data-value="freios">Freios</div>
             <div class="filter-option" data-filter="category" data-value="eletrica">Elétrica</div>
             <div class="filter-option" data-filter="category" data-value="pneus">Pneus</div>
-            <div class="filter-option" data-filter="category" data-value="acessorios">Acessórios</div>
           </div>
         </div>
         
@@ -51,194 +49,122 @@
             <div class="filter-option" data-filter="brand" data-value="ford">Ford</div>
             <div class="filter-option" data-filter="brand" data-value="chevrolet">Chevrolet</div>
             <div class="filter-option" data-filter="brand" data-value="fiat">Fiat</div>
-            <div class="filter-option" data-filter="brand" data-value="toyota">Toyota</div>
-            <div class="filter-option" data-filter="brand" data-value="honda">Honda</div>
           </div>
         </div>
       </div>
       
-      <div class="autopecas-section">
-        <div class="pecas-grid">
-          <!-- Peça 1 -->
-          <div class="peca-card" data-category="motor" data-brand="all">
-            <div class="peca-img-container">
-              <img src="images/pecas/kit-correia.jpg" alt="Kit Correia Dentada" class="peca-img">
-            </div>
-            <div class="peca-body">
-              <span class="peca-category">Motor</span>
-              <h3 class="peca-title">Kit Correia Dentada</h3>
-              <p class="peca-desc">Kit completo com correia dentada, tensor e bomba d'água para diversos modelos</p>
-              <div>
-                <span class="peca-old-price">R$ 580,00</span>
-                <span class="peca-price">R$ 499,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
-            </div>
+      <div class="pecas-grid">
+        <!-- Peça 1 -->
+        <div class="peca-card" data-category="motor" data-brand="all">
+          <div class="peca-img-container">
+            <img src="images/pecas/kit-correia.jpg" alt="Kit Correia Dentada">
           </div>
-          
-          <!-- Peça 2 -->
-          <div class="peca-card" data-category="freios" data-brand="volkswagen">
-            <div class="peca-img-container">
-              <img src="images/pecas/pastilha-freio.jpg" alt="Pastilha de Freio" class="peca-img">
+          <div class="peca-info">
+            <span class="peca-categoria">Motor</span>
+            <h3>Kit Correia Dentada</h3>
+            <p class="peca-descricao">Kit completo com correia, tensor e bomba d'água</p>
+            <div class="peca-precos">
+              <span class="peca-preco-antigo">R$ 580,00</span>
+              <span class="peca-preco">R$ 499,90</span>
             </div>
-            <div class="peca-body">
-              <span class="peca-category">Freios</span>
-              <h3 class="peca-title">Pastilha de Freio VW</h3>
-              <p class="peca-desc">Pastilha de freio dianteira para Gol, Voyage e Saveiro 2010-2019</p>
-              <div>
-                <span class="peca-price">R$ 149,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
-            </div>
+            <span class="peca-estoque">Disponível</span>
+            <button class="btn-peca">Adicionar ao Carrinho</button>
           </div>
-          
-          <!-- Peça 3 -->
-          <div class="peca-card" data-category="pneus" data-brand="all">
-            <div class="peca-img-container">
-              <img src="images/pecas/pneu-175.jpg" alt="Pneu 175/70R13" class="peca-img">
-            </div>
-            <div class="peca-body">
-              <span class="peca-category">Pneus</span>
-              <h3 class="peca-title">Pneu 175/70R13</h3>
-              <p class="peca-desc">Pneu radial 175/70R13 para carros populares - Vida longa</p>
-              <div>
-                <span class="peca-old-price">R$ 320,00</span>
-                <span class="peca-price">R$ 279,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
-            </div>
+        </div>
+        
+        <!-- Peça 2 -->
+        <div class="peca-card" data-category="freios" data-brand="volkswagen">
+          <div class="peca-img-container">
+            <img src="images/pecas/pastilha-freio.jpg" alt="Pastilha de Freio">
           </div>
-          
-          <!-- Peça 4 -->
-          <div class="peca-card" data-category="suspensao" data-brand="ford">
-            <div class="peca-img-container">
-              <img src="images/pecas/amortecedor.jpg" alt="Amortecedor Dianteiro" class="peca-img">
+          <div class="peca-info">
+            <span class="peca-categoria">Freios</span>
+            <h3>Pastilha de Freio VW</h3>
+            <p class="peca-descricao">Para Gol, Voyage e Saveiro 2010-2019</p>
+            <div class="peca-precos">
+              <span class="peca-preco">R$ 149,90</span>
             </div>
-            <div class="peca-body">
-              <span class="peca-category">Suspensão</span>
-              <h3 class="peca-title">Amortecedor Ford</h3>
-              <p class="peca-desc">Amortecedor dianteiro original para Ka e Fiesta 2014-2020</p>
-              <div>
-                <span class="peca-price">R$ 289,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
-            </div>
+            <span class="peca-estoque">Disponível</span>
+            <button class="btn-peca">Adicionar ao Carrinho</button>
           </div>
-          
-          <!-- Peça 5 -->
-          <div class="peca-card" data-category="eletrica" data-brand="chevrolet">
-            <div class="peca-img-container">
-              <img src="images/pecas/bateria.jpg" alt="Bateria Automotiva" class="peca-img">
-            </div>
-            <div class="peca-body">
-              <span class="peca-category">Elétrica</span>
-              <h3 class="peca-title">Bateria 60Ah</h3>
-              <p class="peca-desc">Bateria selada 60Ah para Onix, Prisma e outros modelos</p>
-              <div>
-                <span class="peca-old-price">R$ 450,00</span>
-                <span class="peca-price">R$ 399,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
-            </div>
+        </div>
+        
+        <!-- Peça 3 -->
+        <div class="peca-card" data-category="pneus" data-brand="all">
+          <div class="peca-img-container">
+            <img src="images/pecas/pneu-175.jpg" alt="Pneu 175/70R13">
           </div>
-          
-          <!-- Peça 6 -->
-          <div class="peca-card" data-category="pneus" data-brand="all">
-            <div class="peca-img-container">
-              <img src="images/pecas/pneu-205.jpg" alt="Pneu 205/55R16" class="peca-img">
+          <div class="peca-info">
+            <span class="peca-categoria">Pneus</span>
+            <h3>Pneu 175/70R13</h3>
+            <p class="peca-descricao">Para carros populares - Vida longa</p>
+            <div class="peca-precos">
+              <span class="peca-preco-antigo">R$ 320,00</span>
+              <span class="peca-preco">R$ 279,90</span>
             </div>
-            <div class="peca-body">
-              <span class="peca-category">Pneus</span>
-              <h3 class="peca-title">Pneu 205/55R16</h3>
-              <p class="peca-desc">Pneu premium 205/55R16 para sedans médios - Alto desempenho</p>
-              <div>
-                <span class="peca-price">R$ 589,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
-            </div>
+            <span class="peca-estoque">Disponível</span>
+            <button class="btn-peca">Adicionar ao Carrinho</button>
           </div>
-          
-          <!-- Peça 7 -->
-          <div class="peca-card" data-category="motor" data-brand="honda">
-            <div class="peca-img-container">
-              <img src="images/pecas/filtro-oleo.jpg" alt="Filtro de Óleo" class="peca-img">
-            </div>
-            <div class="peca-body">
-              <span class="peca-category">Motor</span>
-              <h3 class="peca-title">Filtro de Óleo Honda</h3>
-              <p class="peca-desc">Filtro de óleo original para Civic e City 2015-2022</p>
-              <div>
-                <span class="peca-price">R$ 39,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
-            </div>
+        </div>
+        
+        <!-- Peça 4 -->
+        <div class="peca-card" data-category="suspensao" data-brand="ford">
+          <div class="peca-img-container">
+            <img src="images/pecas/amortecedor.jpg" alt="Amortecedor Dianteiro">
           </div>
-          
-          <!-- Peça 8 -->
-          <div class="peca-card" data-category="acessorios" data-brand="all">
-            <div class="peca-img-container">
-              <img src="images/pecas/kit-limpeza.jpg" alt="Kit Limpeza Automotiva" class="peca-img">
+          <div class="peca-info">
+            <span class="peca-categoria">Suspensão</span>
+            <h3>Amortecedor Ford</h3>
+            <p class="peca-descricao">Para Ka e Fiesta 2014-2020</p>
+            <div class="peca-precos">
+              <span class="peca-preco">R$ 289,90</span>
             </div>
-            <div class="peca-body">
-              <span class="peca-category">Acessórios</span>
-              <h3 class="peca-title">Kit Limpeza Automotiva</h3>
-              <p class="peca-desc">Kit completo com 5 produtos para limpeza interna e externa</p>
-              <div>
-                <span class="peca-old-price">R$ 120,00</span>
-                <span class="peca-price">R$ 89,90</span>
-              </div>
-              <span class="peca-stock in-stock">Disponível</span>
-              <div class="peca-actions">
-                <button class="btn-peca">Adicionar ao Carrinho</button>
-              </div>
+            <span class="peca-estoque">Disponível</span>
+            <button class="btn-peca">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+        
+        <!-- Peça 5 -->
+        <div class="peca-card" data-category="eletrica" data-brand="chevrolet">
+          <div class="peca-img-container">
+            <img src="images/pecas/bateria.jpg" alt="Bateria Automotiva">
+          </div>
+          <div class="peca-info">
+            <span class="peca-categoria">Elétrica</span>
+            <h3>Bateria 60Ah</h3>
+            <p class="peca-descricao">Para Onix, Prisma e outros modelos</p>
+            <div class="peca-precos">
+              <span class="peca-preco-antigo">R$ 450,00</span>
+              <span class="peca-preco">R$ 399,90</span>
             </div>
+            <span class="peca-estoque">Disponível</span>
+            <button class="btn-peca">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+        
+        <!-- Peça 6 -->
+        <div class="peca-card" data-category="pneus" data-brand="all">
+          <div class="peca-img-container">
+            <img src="images/pecas/pneu-205.jpg" alt="Pneu 205/55R16">
+          </div>
+          <div class="peca-info">
+            <span class="peca-categoria">Pneus</span>
+            <h3>Pneu 205/55R16</h3>
+            <p class="peca-descricao">Para sedans médios - Alto desempenho</p>
+            <div class="peca-precos">
+              <span class="peca-preco">R$ 589,90</span>
+            </div>
+            <span class="peca-estoque">Disponível</span>
+            <button class="btn-peca">Adicionar ao Carrinho</button>
           </div>
         </div>
       </div>
     </main>
 
     <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Horário de Funcionamento</h3>
-          <p>Segunda a Sexta: 08:00 - 18:00</p>
-          <p>Sábado: 08:00 - 12:00</p>
-        </div>
-        <div class="footer-section">
-          <h3>Contato</h3>
-          <p>Telefone: (41) 1234-5678</p>
-          <p>Email: contato@autocarmr.com.br</p>
-        </div>
-        <div class="footer-section">
-          <h3>Endereço</h3>
-          <p>Rua das Oficinas, 123</p>
-          <p>Centro - Curitiba/PR</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> Auto-Car MR. Todos os direitos reservados.</p>
-      </div>
+      <p>&copy; <span id="current-year"></span> Auto-Car MR. Todos os direitos reservados.</p>
+      <p>Endereço: Rua Exemplo, 123 - Centro - Cidade/Estado</p>
+      <p>Telefone: (XX) XXXX-XXXX | Email: contato@autocarmr.com</p>
     </footer>
   </div>
 
