@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agendamento - Auto-Car MR</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="styles_agendamento.css">
 </head>
 <body>
   <div class="container">
@@ -27,20 +27,198 @@
 
     <main class="main-content">
       <h2>Agendamento de Serviço</h2>
-      <form id="agendamentoForm" class="appointment-form">
-        <!-- Campos do formulário mantidos iguais -->
-        <div class="form-actions">
-          <button type="submit" class="btn-submit">Agendar Serviço</button>
-          <div id="formFeedback" class="feedback-message"></div>
-        </div>
+      <form class="appointment-form" id="agendamentoForm">
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required>
+
+        <label for="data">Data do Serviço:</label>
+        <input type="date" id="data" name="data" required>
+
+        <label for="horario">Horário Preferencial:</label>
+        <input type="time" id="horario" name="horario" min="08:00" max="17:00" required>
+
+        <label for="servico">Tipo de Serviço:</label>
+        <select id="servico" name="servico" required>
+          <option value="" disabled selected>Selecione o serviço</option>
+          <option value="revisao">Revisão Preventiva</option>
+          <option value="oleo">Troca de Óleo e Filtros</option>
+          <option value="freios">Sistema de Freios</option>
+          <option value="suspensao">Suspensão e Direção</option>
+          <option value="eletrica">Elétrica Automotiva</option>
+          <option value="ar">Ar Condicionado</option>
+          <option value="pintura">Pintura e Funilaria</option>
+          <option value="outro">Outro Serviço</option>
+        </select>
+
+        <label for="marca">Marca do Veículo:</label>
+        <select id="marca" name="marca" required onchange="carregarModelos()">
+          <option value="" disabled selected>Selecione a marca</option>
+          <optgroup label="Nacionais">
+            <option value="chevrolet">Chevrolet</option>
+            <option value="fiat">Fiat</option>
+            <option value="volkswagen">Volkswagen</option>
+            <option value="ford">Ford</option>
+            <option value="renault">Renault</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="toyota">Toyota</option>
+            <option value="honda">Honda</option>
+            <option value="jeep">Jeep</option>
+          </optgroup>
+          <optgroup label="Importados">
+            <option value="bmw">BMW</option>
+            <option value="mercedes">Mercedes-Benz</option>
+            <option value="audi">Audi</option>
+            <option value="volvo">Volvo</option>
+            <option value="landrover">Land Rover</option>
+            <option value="porsche">Porsche</option>
+            <option value="tesla">Tesla</option>
+            <option value="lexus">Lexus</option>
+            <option value="jaguar">Jaguar</option>
+          </optgroup>
+          <optgroup label="Outras Marcas">
+            <option value="nissan">Nissan</option>
+            <option value="mitsubishi">Mitsubishi</option>
+            <option value="peugeot">Peugeot</option>
+            <option value="citroen">Citroën</option>
+            <option value="kia">Kia</option>
+            <option value="subaru">Subaru</option>
+            <option value="outra">Outra Marca</option>
+          </optgroup>
+        </select>
+
+        <label for="modelo">Modelo do Veículo:</label>
+        <select id="modelo" name="modelo" required disabled>
+          <option value="" disabled selected>Primeiro selecione a marca</option>
+        </select>
+
+        <label for="ano">Ano do Veículo:</label>
+        <select id="ano" name="ano" required>
+          <option value="" disabled selected>Selecione o ano</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+          <option value="2008">2008</option>
+          <option value="2007">2007</option>
+          <option value="2006">2006</option>
+          <option value="2005">2005</option>
+          <option value="antigo">Anterior a 2005</option>
+        </select>
+
+        <label for="mensagem">Informações Adicionais:</label>
+        <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva qualquer problema específico ou observação"></textarea>
+
+        <button type="submit">Agendar Serviço</button>
       </form>
     </main>
 
     <footer class="footer">
       <p>&copy; <span id="current-year"></span> Auto-Car MR. Todos os direitos reservados.</p>
+      <p>Endereço: Rua Exemplo, 123 - Centro - Cidade/Estado</p>
+      <p>Telefone: (XX) XXXX-XXXX | Email: contato@autocarmr.com</p>
     </footer>
   </div>
 
-  <script src="assets/js/scripts.js"></script>
+  <script>
+    // Atualiza o ano automaticamente
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Banco de dados completo de modelos por marca
+    const modelosPorMarca = {
+      chevrolet: ["Onix", "Prisma", "Cruze", "S10", "Tracker", "Spin", "Cobalt", "Montana", "Camaro", "Corvette"],
+      fiat: ["Argo", "Cronos", "Mobi", "Toro", "Strada", "Pulse", "Fiorino", "Ducato", "500", "Punto"],
+      volkswagen: ["Gol", "Virtus", "Polo", "T-Cross", "Nivus", "Saveiro", "Amarok", "Jetta", "Tiguan", "Passat"],
+      ford: ["Ka", "Fiesta", "EcoSport", "Ranger", "Territory", "Maverick", "Edge", "Mustang", "Focus", "Fusion"],
+      renault: ["Kwid", "Sandero", "Logan", "Duster", "Captur", "Oroch", "Master", "Kangoo", "Megane", "Clio"],
+      hyundai: ["HB20", "Creta", "Tucson", "Santa Fe", "IX35", "Elantra", "Azera", "i30", "Kona", "Veloster"],
+      toyota: ["Corolla", "Hilux", "SW4", "Yaris", "Etios", "RAV4", "Prius", "Camry", "Supra", "Land Cruiser"],
+      honda: ["City", "Civic", "Fit", "HR-V", "CR-V", "Accord", "WR-V", "HR-V", "NSX", "CR-Z"],
+      jeep: ["Renegade", "Compass", "Commander", "Gladiator", "Wrangler", "Cherokee", "Grand Cherokee"],
+      bmw: ["Série 1", "Série 3", "Série 5", "X1", "X3", "X5", "Z4", "X7", "i8", "M3"],
+      mercedes: ["Classe A", "Classe C", "Classe E", "GLA", "GLC", "GLE", "Classe S", "AMG GT", "Sprinter"],
+      audi: ["A1", "A3", "A4", "Q3", "Q5", "Q7", "TT", "A5", "A6", "A7", "A8", "R8"],
+      volvo: ["XC40", "XC60", "XC90", "S60", "S90", "V40", "V60", "V90"],
+      landrover: ["Discovery", "Range Rover Evoque", "Range Rover Sport", "Defender", "Discovery Sport"],
+      porsche: ["911", "Cayenne", "Macan", "Panamera", "Taycan", "Boxster", "Cayman"],
+      tesla: ["Model S", "Model 3", "Model X", "Model Y", "Roadster", "Cybertruck"],
+      lexus: ["UX", "NX", "RX", "ES", "LS", "LC", "RC", "GX"],
+      jaguar: ["XE", "XF", "E-Pace", "F-Pace", "I-Pace", "F-Type"],
+      nissan: ["Kicks", "Versa", "Sentra", "March", "Frontier", "Leaf", "GT-R", "370Z"],
+      mitsubishi: ["ASX", "Outlander", "L200", "Pajero Sport", "Eclipse Cross", "Pajero"],
+      peugeot: ["208", "2008", "3008", "5008", "Partner", "308", "408", "508"],
+      citroen: ["C3", "C4 Cactus", "Aircross", "Jumper", "C4 Lounge", "C5 Aircross"],
+      kia: ["Cerato", "Sportage", "Sorento", "Soul", "Carnival", "Picanto", "Stonic"],
+      subaru: ["Forester", "Outback", "XV", "BRZ", "Impreza", "Legacy"],
+      outra: ["Outro Modelo"]
+    };
+
+    // Função para carregar modelos baseado na marca selecionada
+    function carregarModelos() {
+      const marcaSelecionada = document.getElementById('marca').value;
+      const modeloSelect = document.getElementById('modelo');
+      
+      // Limpa opções anteriores
+      modeloSelect.innerHTML = '';
+      
+      if (marcaSelecionada) {
+        // Habilita o select de modelos
+        modeloSelect.disabled = false;
+        
+        // Adiciona opção padrão
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Selecione o modelo';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        modeloSelect.appendChild(defaultOption);
+        
+        // Adiciona modelos da marca selecionada
+        modelosPorMarca[marcaSelecionada].forEach(modelo => {
+          const option = document.createElement('option');
+          option.value = modelo.toLowerCase().replace(/\s+/g, '-');
+          option.textContent = modelo;
+          modeloSelect.appendChild(option);
+        });
+      } else {
+        modeloSelect.disabled = true;
+      }
+    }
+
+    // Validação do formulário
+    document.getElementById('agendamentoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Validação básica
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const telefone = document.getElementById('telefone').value;
+      
+      if (!nome || !email || !telefone) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+      }
+      
+      // Se tudo estiver válido, pode enviar o formulário
+      alert('Agendamento enviado com sucesso! Entraremos em contato para confirmação.');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
